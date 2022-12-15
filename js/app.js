@@ -12,20 +12,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const validar = e   => {
         //trim elimina espacios en blanco, siempre se recomienda ponerlo en un formulario
         if (e.target.value.trim() === '') {
-            mostrarAlerta(`El campo ${e.target.id} es obligatorio`);
+            mostrarAlerta(`El campo ${e.target.id} es obligatorio`, e.target.parentElement);
         }else{
             console.log('Tiene contenido');
         }
     }
     //Mostrar alertas de la validacion
-    const mostrarAlerta = (mensaje) => {
+    const mostrarAlerta = (mensaje, referencia) => {
+        //Comprueba si ya existe una alerta
+        const alerta = referencia.querySelector('.bg-red-600')
+        if (alerta) {
+            //SI existe, la elimina y solo queda la que estaba
+            alerta.remove();
+        }
         //Generar HTML
         const error = document.createElement('P')
         error.textContent = mensaje;
         error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center');
         
         //Inyectar error al formulario
-        formulario.appendChild(error)
+        referencia.appendChild(error);
     }
 
 
