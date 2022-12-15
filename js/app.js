@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputMensaje = document.getElementById("mensaje");
     const formulario = document.getElementById('formulario')
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
+    const btnReset = document.querySelector('#formulario button[type="reset"]');
 
     //Funciones
      //Validacon de eventos
@@ -87,4 +88,18 @@ document.addEventListener("DOMContentLoaded", () => {
     inputEmail.addEventListener("input", validar)
     inputAsunto.addEventListener("input", validar)
     inputMensaje.addEventListener("input", validar)
+    btnReset.addEventListener('click', e => {
+        // pare poder preguntar si esta seguro de resetear
+        e.preventDefault();
+        
+        //Reinciar objeto
+        email.email = '';
+        email.asunto = '';
+        email.mensaje = '';
+        //reseteamos formulario
+        formulario.reset()
+
+        //comprobar el email, para el boton de enviar
+        comprobarEmail();
+    })
 })
