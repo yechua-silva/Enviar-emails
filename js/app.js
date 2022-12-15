@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputAsunto = document.getElementById("asunto");
     const inputMensaje = document.getElementById("mensaje");
     const formulario = document.getElementById('formulario')
+    const btnSubmit = document.querySelector('#formulario button[type="submit"]');
 
     //Funciones
      //Validacon de eventos
@@ -19,11 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
         //trim elimina espacios en blanco, siempre se recomienda ponerlo en un formulario
         if (e.target.value.trim() === '') {
             mostrarAlerta(`El campo ${e.target.id} es obligatorio`, e.target.parentElement);
+            email[e.target.id] = '';
+            comprobarEmail()
             return;
         }
         //validacion del email
         if (e.target.id === 'email' && !validarEmail(e.target.value)) {
             mostrarAlerta('El campo email no es valido', e.target.parentElement);
+            email[e.target.id] = '';
+            comprobarEmail()
             return;
         }
         limpiarAlerta(e.target.parentElement);
@@ -64,7 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
     //Comprueba el email
     const comprobarEmail = () => {
         //Comprueba los campos vacios
-        console.log(Object.values(email).includes(''));
+        if (Object.values(email).includes('')){
+            btnSubmit.classList.add('opacity-50');
+            btnSubmit.disabled = true;
+            return
+        }
+        btnSubmit.classList.remove('opacity-50')
+        btnSubmit.disabled = false;
+        
     };
 
 
@@ -72,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //Aignar eventos
     //se ejecuta al salir del input
-    inputEmail.addEventListener("blur", validar)
-    inputAsunto.addEventListener("blur", validar)
-    inputMensaje.addEventListener("blur", validar)
+    inputEmail.addEventListener("input", validar)
+    inputAsunto.addEventListener("input", validar)
+    inputMensaje.addEventListener("input", validar)
 })
