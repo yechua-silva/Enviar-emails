@@ -8,28 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.getElementById('formulario')
 
     //Funciones
+     //Validacon de eventos
+    const validar = e   => {
+        //trim elimina espacios en blanco, siempre se recomienda ponerlo en un formulario
+        if (e.target.value.trim() === '') {
+            mostrarAlerta(`El campo ${e.target.id} es obligatorio`);
+        }else{
+            console.log('Tiene contenido');
+        }
+    }
     //Mostrar alertas de la validacion
-    const mostrarAlerta = () => {
+    const mostrarAlerta = (mensaje) => {
         //Generar HTML
         const error = document.createElement('P')
-        error.textContent = 'Hubo un error...';
+        error.textContent = mensaje;
         error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center');
         
         //Inyectar error al formulario
         formulario.appendChild(error)
     }
-
-
-    //Validacon de eventos
-    const validar = e   => {
-        //trim elimina espacios en blanco, siempre se recomienda ponerlo en un formulario
-        if (e.target.value.trim() === '') {
-            mostrarAlerta();
-        }else{
-            console.log('Tiene contenido');
-        }
-    }
-
 
 
 
