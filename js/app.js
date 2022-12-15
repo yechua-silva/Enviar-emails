@@ -1,3 +1,4 @@
+//DOMContentLoaded, se usa para que carge primeto el contenmido del html
 document.addEventListener("DOMContentLoaded", () => {
     
     //Seleccionar elemeentos de la interfaz
@@ -5,5 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputAsunto = document.getElementById("asunto");
     const inputMensaje = document.getElementById("mensaje");
 
-    console.log(inputMensaje, inputEmail, inputAsunto);
+    //Aignar eventos
+    const validar = e   => {
+        console.log(e.target.value);
+    }
+    //se ejecuta al salir del input
+    inputEmail.addEventListener("blur", validar)
+    inputAsunto.addEventListener("blur", validar)
+    inputMensaje.addEventListener("blur", validar)
+
+
 })
