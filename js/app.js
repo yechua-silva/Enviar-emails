@@ -23,6 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
         //Mostrar spinner
         spinner.classList.add('flex');
         spinner.classList.remove('hidden');
+
+        //Desaparecer spinner, sumular que ya se envio
+        setTimeout(() => {
+            spinner.classList.remove('flex');
+            spinner.classList.add('hidden');
+
+            //Reiniciamos el objeto
+            resetFormulario()
+            //Crear alerta
+            const alertaExito = document.createElement('P');
+            alertaExito.classList.add('bg-green-500', 'text-white', 'p-2', 'text-center', 'reunded-lg', 'mt-10', 'font-bold', 'text-sm', 'uppercase');
+            alertaExito.textContent = 'Mensaje enviado correctamente'
+            //Agregar al HTML
+            formulario.appendChild(alertaExito);
+            //Desaparecer alerta
+            setTimeout(() => {
+                alertaExito.remove();
+            },2000)
+
+        }, 2000);
     };
      //Validacon de eventos
     const validar = e   => {
@@ -87,6 +107,15 @@ document.addEventListener("DOMContentLoaded", () => {
         btnSubmit.disabled = false;
         
     };
+    //Resetear formulario
+    const resetFormulario = () => {
+        //Reiniciamos el objeto
+        email.email = '';
+        email.asunto = '';
+        email.mensaje = '';
+        formulario.reset();
+        comprobarEmail();
+    };
 
 
 
@@ -99,16 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
     formulario.addEventListener('submit', enviarEmail)
     btnReset.addEventListener('click', e => {
         // pare poder preguntar si esta seguro de resetear
-        e.preventDefault();
-        
+        e.preventDefault();   
         //Reinciar objeto
-        email.email = '';
-        email.asunto = '';
-        email.mensaje = '';
-        //reseteamos formulario
-        formulario.reset()
-
-        //comprobar el email, para el boton de enviar
-        comprobarEmail();
+        resetFormulario();
     })
 })
