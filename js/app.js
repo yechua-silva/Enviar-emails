@@ -6,10 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputAsunto = document.getElementById("asunto");
     const inputMensaje = document.getElementById("mensaje");
 
-    //Aignar eventos
+    //Validaconl de eventos
     const validar = e   => {
-        console.log(e.target.value);
+        //trim elimina espacios en blanco, siempre se recomienda ponerlo en un formulario
+        if (e.target.value.trim() === '') {
+            console.log('Esta vacio');
+        }else{
+            console.log('Tiene contenido');
+        }
     }
+    //Aignar eventos
     //se ejecuta al salir del input
     inputEmail.addEventListener("blur", validar)
     inputAsunto.addEventListener("blur", validar)
