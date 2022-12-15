@@ -1,5 +1,11 @@
 //DOMContentLoaded, se usa para que carge primeto el contenmido del html
 document.addEventListener("DOMContentLoaded", () => {
+    //Objeto con los datos ingresados
+    const email = {
+        email: '',
+        asunto: '',
+        mensaje: ''
+    }
     
     //Seleccionar elemeentos de la interfaz
     const inputEmail = document.getElementById("email");
@@ -21,6 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         limpiarAlerta(e.target.parentElement);
+        //Aignar valores
+        email[e.target.id] = e.target.value.trim().toLowerCase();
+
+        //Conprobar email
+        comprobarEmail();
+
     }
     //Mostrar alertas de la validacion
     const mostrarAlerta = (mensaje, referencia) => {
@@ -49,6 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultado = regex.test(email);
         return resultado;
     };
+    //Comprueba el email
+    const comprobarEmail = () => {
+        //Comprueba los campos vacios
+        console.log(Object.values(email).includes(''));
+    };
+
 
 
 
