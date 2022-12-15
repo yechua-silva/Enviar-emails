@@ -14,8 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.getElementById('formulario')
     const btnSubmit = document.querySelector('#formulario button[type="submit"]');
     const btnReset = document.querySelector('#formulario button[type="reset"]');
+    const spinner = document.getElementById('spinner')
 
     //Funciones
+    //Enviar email
+    const enviarEmail = e => {
+        e.preventDefault();
+        //Mostrar spinner
+        spinner.classList.add('flex');
+        spinner.classList.remove('hidden');
+    };
      //Validacon de eventos
     const validar = e   => {
         //trim elimina espacios en blanco, siempre se recomienda ponerlo en un formulario
@@ -88,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inputEmail.addEventListener("input", validar)
     inputAsunto.addEventListener("input", validar)
     inputMensaje.addEventListener("input", validar)
+    formulario.addEventListener('submit', enviarEmail)
     btnReset.addEventListener('click', e => {
         // pare poder preguntar si esta seguro de resetear
         e.preventDefault();
