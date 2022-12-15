@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
             mostrarAlerta(`El campo ${e.target.id} es obligatorio`, e.target.parentElement);
             return;
         }
+        //validacion del email
+        if (e.target.id === 'email' && !validarEmail(e.target.value)) {
+            mostrarAlerta('El campo email no es valido', e.target.parentElement);
+            return;
+        }
         limpiarAlerta(e.target.parentElement);
     }
     //Mostrar alertas de la validacion
@@ -37,6 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
             //SI existe, la elimina y solo queda la que estaba
             alerta.remove();
         }
+    };
+    //Validacion de email
+    const validarEmail = (email) => {
+        const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        const resultado = regex.test(email);
+        return resultado;
     };
 
 
